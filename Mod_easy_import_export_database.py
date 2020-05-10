@@ -8,7 +8,7 @@ import pyodbc
 from sqlalchemy import create_engine
 import pandas as pd
 
-def get_vasu_data(query):
+def get_database_data(query):
     print("pull from SQL Server" )
     driver = '{SQL Server}' 
     server = 'VASU\MARKETING_DB'
@@ -24,7 +24,7 @@ def get_vasu_data(query):
 
 
 #Creating sql connection to add results back into SQL server
-def vasu_import(df, database,table_name):
+def database_import(df, database,table_name):
     engine = create_engine('mssql+pyodbc://PythonConnect:Python2016@VASU\MARKETING_DB/'+database+'?driver=SQL+Server')
     df.to_sql(name=table_name,con=engine ,if_exists = 'append',index = False)
 
